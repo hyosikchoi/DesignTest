@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
 
     private val lottieAnimationView: LottieAnimationView by lazy { findViewById(R.id.lottieAnimationView) }
 
+    private var tankMin: Int = 0
+
+    private var tankMax: Int = 10
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,18 +43,32 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        lottieAnimationView.setAnimation("fuel_box.json")
+
         task = object : TimerTask() {
             override fun run() {
-                runOnUiThread { setDigitText() }
+                runOnUiThread {
+                    setDigitText()
+                    setTank()
+                }
             }
         }
 
         timer.schedule(task, 1000, 1000)
 
-        lottieAnimationView.setAnimation("fuel_box.json")
 
     }
 
+
+    override fun onPause() {
+        super.onPause()
+        lottieAnimationView.pauseAnimation()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lottieAnimationView.playAnimation()
+    }
 
     private fun setDigitText() {
 
@@ -67,4 +85,13 @@ class MainActivity : AppCompatActivity() {
         digitTextView6.setValue(fuelDecimalPoint[4].digitToInt())
         digitTextView7.setValue(fuelDecimalPoint[5].digitToInt())
     }
+
+    private fun setTank() {
+        tankMin = if(tankMin == 90) 0 else tankMin + 10
+        tankMax = if(tankMax == 100) 10 else tankMax + 10
+
+        lottieAnimationView.setMinAndMaxFrame(tankMin, tankMax)
+
+    }
+
 }
