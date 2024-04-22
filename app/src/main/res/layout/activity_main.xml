@@ -1,81 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:background="@color/white"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <com.example.designtestapplication.DigitTextView
-        android:id="@+id/digitTextView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/digit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="."
-        android:textSize="30dp"
-        android:translationX="-5dp"
-        app:layout_constraintStart_toEndOf="@+id/digitTextView1"
-        app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.example.designtestapplication.DigitTextView
-        android:id="@+id/digitTextView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/digitTextView1"
-        app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
-        app:layout_constraintStart_toEndOf="@+id/digitTextView1"
-        />
-    <com.example.designtestapplication.DigitTextView
-        android:id="@+id/digitTextView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/digitTextView1"
-        app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
-        app:layout_constraintStart_toEndOf="@+id/digitTextView2"
-        />
-    <com.example.designtestapplication.DigitTextView
-        android:id="@+id/digitTextView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/digitTextView1"
-        app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
-        app:layout_constraintStart_toEndOf="@+id/digitTextView3"
-        />
-    <com.example.designtestapplication.DigitTextView
-        android:id="@+id/digitTextView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/digitTextView1"
-        app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
-        app:layout_constraintStart_toEndOf="@+id/digitTextView4"
-        />
-    <com.example.designtestapplication.DigitTextView
-        android:id="@+id/digitTextView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/digitTextView1"
-        app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
-        app:layout_constraintStart_toEndOf="@+id/digitTextView5"
-        />
-    <com.example.designtestapplication.DigitTextView
-        android:id="@+id/digitTextView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/digitTextView1"
-        app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
-        app:layout_constraintStart_toEndOf="@+id/digitTextView6"
-        />
+        <com.example.designtestapplication.DigitTextView
+            android:id="@+id/digitTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/digit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="."
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:translationX="-5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
+            app:layout_constraintStart_toEndOf="@+id/digitTextView1" />
+
+        <com.example.designtestapplication.DigitTextView
+            android:id="@+id/digitTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
+            app:layout_constraintStart_toEndOf="@+id/digitTextView1"
+            app:layout_constraintTop_toTopOf="@+id/digitTextView1" />
+
+        <com.example.designtestapplication.DigitTextView
+            android:id="@+id/digitTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
+            app:layout_constraintStart_toEndOf="@+id/digitTextView2"
+            app:layout_constraintTop_toTopOf="@+id/digitTextView1" />
+
+        <com.example.designtestapplication.DigitTextView
+            android:id="@+id/digitTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
+            app:layout_constraintStart_toEndOf="@+id/digitTextView3"
+            app:layout_constraintTop_toTopOf="@+id/digitTextView1" />
+
+        <com.example.designtestapplication.DigitTextView
+            android:id="@+id/digitTextView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
+            app:layout_constraintStart_toEndOf="@+id/digitTextView4"
+            app:layout_constraintTop_toTopOf="@+id/digitTextView1" />
+
+        <com.example.designtestapplication.DigitTextView
+            android:id="@+id/digitTextView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
+            app:layout_constraintStart_toEndOf="@+id/digitTextView5"
+            app:layout_constraintTop_toTopOf="@+id/digitTextView1" />
+
+        <com.example.designtestapplication.DigitTextView
+            android:id="@+id/digitTextView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/digitTextView1"
+            app:layout_constraintStart_toEndOf="@+id/digitTextView6"
+            app:layout_constraintTop_toTopOf="@+id/digitTextView1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/digitTextView7"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

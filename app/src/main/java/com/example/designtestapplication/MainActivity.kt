@@ -5,11 +5,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.airbnb.lottie.LottieAnimationView
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.Timer
 import java.util.TimerTask
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private var task: TimerTask? = null
 
     private var fuelValue: Double = 0.0
+
+    private val lottieAnimationView: LottieAnimationView by lazy { findViewById(R.id.lottieAnimationView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         timer.schedule(task, 1000, 1000)
+
+        lottieAnimationView.setAnimation("fuel_box.json")
 
     }
 
