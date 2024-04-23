@@ -1,15 +1,20 @@
 package com.example.designtestapplication
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.Timer
 import java.util.TimerTask
+import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     private var tankMax: Int = 10
 
+    private var isEndReverse: Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,18 +51,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         lottieAnimationView.setAnimation("fuel_box.json")
+//        lottieAnimationView.repeatMode = LottieDrawable.REVERSE
+        lottieAnimationView.addAnimatorUpdateListener {
+            val progress = (it.animatedValue as Float * 100).toInt()
+            if(progress == 0 && !isEndReverse){
+                lottieAnimationView.speed = 1.0f
+                isEndReverse = true
+                lottieAnimationView.setMinAndMaxFrame(tankMin, tankMax)
+            }
+        }
 
         task = object : TimerTask() {
             override fun run() {
                 runOnUiThread {
                     setDigitText()
-                    setTank()
+                    if(tankMin == 100 && tankMax == 110 && isEndReverse) setReverseTank()
+                    else {
+                        if(isEndReverse) setTank()
+                    }
                 }
             }
         }
 
         timer.schedule(task, 1000, 1000)
-
 
     }
 
@@ -87,11 +105,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setTank() {
-        tankMin = if(tankMin == 90) 0 else tankMin + 10
-        tankMax = if(tankMax == 100) 10 else tankMax + 10
-
+        tankMin += 10
+        tankMax += 10
         lottieAnimationView.setMinAndMaxFrame(tankMin, tankMax)
 
     }
 
+    private fun setReverseTank() {
+        isEndReverse = false
+        lottieAnimationView.speed = -1.0f
+        lottieAnimationView.setMinAndMaxFrame(0, 100)
+        tankMin = 0
+        tankMax = 10
+    }
 }
